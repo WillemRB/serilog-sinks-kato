@@ -19,6 +19,9 @@ namespace Serilog.Sinks.Kato
 
         private readonly JsonSerializerSettings _settings;
 
+        /// <summary>
+        /// The URL to which the message will be POSTed.
+        /// </summary>
         private string RoomUrl
         {
             get
@@ -27,6 +30,11 @@ namespace Serilog.Sinks.Kato
             }
         }
 
+        /// <summary>
+        /// Constructor for a new Kato Sink.
+        /// </summary>
+        /// <param name="roomId">The Id that is obtained from the room you want the messages to show in.</param>
+        /// <param name="name">The name that is used in the room.</param>
         public KatoSink(string roomId, string name)
         {
             _roomId = roomId;
@@ -34,7 +42,7 @@ namespace Serilog.Sinks.Kato
 
             _settings = new JsonSerializerSettings()
             {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
             };
         }
 
@@ -53,6 +61,10 @@ namespace Serilog.Sinks.Kato
             SendRequest(body);
         }
 
+        /// <summary>
+        /// POST a message to the Kato room.
+        /// </summary>
+        /// <param name="body"></param>
         private void SendRequest(string body)
         {
             var request = WebRequest.Create(RoomUrl);
@@ -68,6 +80,11 @@ namespace Serilog.Sinks.Kato
             var response = request.GetResponse();
         }
 
+        /// <summary>
+        /// Map the LogEventLevel to a HTML color.
+        /// </summary>
+        /// <param name="level"></param>
+        /// <returns></returns>
         private string GetColor(LogEventLevel level)
         {
             switch (level)
