@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Serilog.Sinks.Kato;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Serilog.Sinks.Kato.Tests
 {
