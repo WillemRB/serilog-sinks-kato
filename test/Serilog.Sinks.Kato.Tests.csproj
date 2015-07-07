@@ -56,11 +56,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="KatoTests.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="KatoDefaultTests.cs" />
+    <Compile Include="KatoMarkdownTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Serilog.Sinks.Kato.csproj">
+    <ProjectReference Include="..\src\Serilog.Sinks.Kato.csproj">
       <Project>{dc253941-0466-43ee-8b22-fab960be0991}</Project>
       <Name>Serilog.Sinks.Kato</Name>
     </ProjectReference>

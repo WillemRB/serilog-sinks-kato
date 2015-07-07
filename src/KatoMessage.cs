@@ -1,13 +1,31 @@
-﻿namespace Serilog.Sinks.Kato
+﻿using Newtonsoft.Json;
+using Serilog.Sinks.Kato.Utils;
+
+namespace Serilog.Sinks.Kato
 {
-    public enum KatoRenderer
+    [JsonConverter(typeof(JsonToStringConverter))]
+    public class KatoRenderer
     {
-        Default,
-        Code,
-        Markdown,
+        private string _name;
+
+        private KatoRenderer(string name)
+        {
+            _name = name;
+        }
+
+        public override string ToString()
+        {
+            return _name;
+        }
+
+        public static KatoRenderer Default { get { return new KatoRenderer("default"); } }
+
+        public static KatoRenderer Code { get { return new KatoRenderer("code"); } }
+
+        public static KatoRenderer Markdown { get { return new KatoRenderer("markdown"); } }
     }
 
-    internal class KatoMessage
+    public class KatoMessage
     {
         /// <summary>
         /// The name that is used in the Kato room.

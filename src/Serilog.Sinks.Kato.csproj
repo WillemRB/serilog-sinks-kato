@@ -51,6 +51,7 @@
     <Compile Include="KatoMessage.cs" />
     <Compile Include="KatoSink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\JsonToStringConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

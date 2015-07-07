@@ -3,10 +3,8 @@
 namespace Serilog.Sinks.Kato.Tests
 {
     [TestClass]
-    public class KatoTests
+    public class KatoDefaultTests
     {
-        private string _roomId = "";
-
         private ILogger _logger;
 
         [TestInitialize]
@@ -14,7 +12,7 @@ namespace Serilog.Sinks.Kato.Tests
         {
             _logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
-                .WriteTo.Sink(new KatoSink(_roomId, "UnitTest"))
+                .WriteTo.Sink(new KatoSink(Config.roomId, "Default Test", KatoRenderer.Default))
                 .CreateLogger();
         }
 
