@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serilog.Sinks.Kato", "src\Serilog.Sinks.Kato.csproj", "{DC253941-0466-43EE-8B22-FAB960BE0991}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serilog.Sinks.Kato.Tests", "test\Serilog.Sinks.Kato.Tests\Serilog.Sinks.Kato.Tests.csproj", "{3A12DF08-0D05-427A-B4D1-F64DDC6ADBF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serilog.Sinks.Kato.Tests", "test\Serilog.Sinks.Kato.Tests.csproj", "{3A12DF08-0D05-427A-B4D1-F64DDC6ADBF1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
