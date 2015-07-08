@@ -60,6 +60,7 @@
     <Compile Include="KatoDefaultTests.cs" />
     <Compile Include="KatoMarkdownTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="KatoTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\Serilog.Sinks.Kato.csproj">

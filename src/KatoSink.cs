@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Serilog.Core;
@@ -10,9 +11,11 @@ namespace Serilog.Sinks.Kato
 {
     public class KatoSink : ILogEventSink
     {
-        private readonly string _roomId;
-        private readonly string _name;
-        private readonly KatoRenderer _renderer;
+        public string RoomId { get; private set; }
+
+        public string Name { get; private set; }
+
+        public KatoRenderer Renderer { get; private set; }
 
         private readonly JsonSerializerSettings _settings;
 
@@ -23,7 +26,7 @@ namespace Serilog.Sinks.Kato
         {
             get
             {
-                return String.Format(@"https://api.kato.im/rooms/{0}/simple", _roomId);
+                return String.Format(@"https://api.kato.im/rooms/{0}/simple", RoomId);
             }
         }
 
@@ -45,9 +48,24 @@ namespace Serilog.Sinks.Kato
         /// <param name="renderer">The renderer that should be used for the message.</param>
         public KatoSink(string roomId, string name, KatoRenderer renderer)
         {
-            _roomId = roomId;
-            _name = name;
-            _renderer = renderer;
+            if (String.IsNullOrWhiteSpace(roomId))
+            {
+                throw new ArgumentException("roomId can not be null or empty", "roomId");
+            }
+
+            if (!Regex.IsMatch(roomId, "^[a-f0-9]+$"))
+            {
+                throw new ArgumentException(String.Format("{0} is not a valid room Id.", roomId), "roomId");
+            }
+
+            if (String.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentException("name can not be null or empty", "name");
+            }
+
+            RoomId = roomId;
+            Name = name;
+            Renderer = renderer;
 
             _settings = new JsonSerializerSettings()
             {
@@ -59,8 +77,8 @@ namespace Serilog.Sinks.Kato
         {
             var message = new KatoMessage()
             {
-                From = _name,
-                Renderer = _renderer,
+                From = Name,
+                Renderer = Renderer,
                 Color = GetColor(logEvent.Level),
                 Text = logEvent.RenderMessage(),
             };
