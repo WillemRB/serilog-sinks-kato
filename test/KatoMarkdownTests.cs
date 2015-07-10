@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Serilog.Sinks.Kato.Tests
 {
@@ -25,6 +26,12 @@ namespace Serilog.Sinks.Kato.Tests
             _logger.Information("Information");
             _logger.Debug("**Debug**");
             _logger.Verbose("~~Verbose~~");
+        }
+
+        [TestMethod]
+        public void MultiLineTest()
+        {
+            _logger.Information("### Information\nThis is one a new line?");
         }
     }
 }
